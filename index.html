@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SwiftLoan — Personal Finance Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">SL</div>
+      <div>
+        <div class="brand-name">SwiftLoan</div>
+        <div class="brand-tagline">Personal Finance</div>
+      </div>
+    </div>
+
+    <nav class="step-nav" id="stepNav">
+      <div class="step-item active" data-step="1">
+        <div class="step-dot"><span>1</span></div>
+        <div class="step-info">
+          <div class="step-label">Getting Started</div>
+          <div class="step-desc">Loan type & amount</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="2">
+        <div class="step-dot"><span>2</span></div>
+        <div class="step-info">
+          <div class="step-label">Personal Details</div>
+          <div class="step-desc">Your information</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="3">
+        <div class="step-dot"><span>3</span></div>
+        <div class="step-info">
+          <div class="step-label">PAN Verification</div>
+          <div class="step-desc">Identity proof</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="4">
+        <div class="step-dot"><span>4</span></div>
+        <div class="step-info">
+          <div class="step-label">Aadhaar KYC</div>
+          <div class="step-desc">Address proof</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="5">
+        <div class="step-dot"><span>5</span></div>
+        <div class="step-info">
+          <div class="step-label">Selfie & Face Match</div>
+          <div class="step-desc">Liveness check</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="6">
+        <div class="step-dot"><span>6</span></div>
+        <div class="step-info">
+          <div class="step-label">Bank Statement</div>
+          <div class="step-desc">Income verification</div>
+        </div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" data-step="7">
+        <div class="step-dot"><span>7</span></div>
+        <div class="step-info">
+          <div class="step-label">Review & Submit</div>
+          <div class="step-desc">Final confirmation</div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="security-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        256-bit SSL Encrypted
+      </div>
+      <div class="security-badge" style="margin-top:6px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        RBI Compliant KYC
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN ── -->
+  <main class="main-content">
+
+    <!-- Mobile header -->
+    <div class="mobile-header">
+      <div class="brand-mark small">SL</div>
+      <div class="mobile-step-indicator" id="mobileStepText">Step 1 of 7</div>
+      <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    </div>
+
+    <!-- Progress bar mobile -->
+    <div class="mobile-progress">
+      <div class="mobile-progress-fill" id="mobileProgress" style="width:14%"></div>
+    </div>
+
+    <!-- ── STEP 1: Loan Setup ── -->
+    <section class="step-panel active" id="panel-1">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Personal Loan Application</div>
+        <h1 class="panel-title">How much do you need?</h1>
+        <p class="panel-subtitle">Get funds in your account within 24–48 hours after approval</p>
+      </div>
+
+      <div class="emi-hero">
+        <div class="emi-hero-inner">
+          <div class="emi-label">Monthly EMI</div>
+          <div class="emi-value" id="emiDisplay">₹ 0</div>
+          <div class="emi-sublabel">at <span id="rateLabel">14%</span> p.a. for <span id="tenureLabel">12</span> months</div>
+        </div>
+      </div>
+
+      <div class="sliders-block">
+        <div class="slider-group">
+          <div class="slider-header">
+            <label>Loan Amount</label>
+            <div class="slider-value" id="amountValue">₹ 1,00,000</div>
+          </div>
+          <input type="range" class="custom-range" id="loanAmount" min="10000" max="1000000" step="5000" value="100000" />
+          <div class="slider-limits"><span>₹10,000</span><span>₹10,00,000</span></div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <label>Tenure</label>
+            <div class="slider-value" id="tenureValue">12 months</div>
+          </div>
+          <input type="range" class="custom-range" id="loanTenure" min="3" max="84" step="3" value="12" />
+          <div class="slider-limits"><span>3 mo</span><span>84 mo</span></div>
+        </div>
+
+        <div class="slider-group">
+          <div class="slider-header">
+            <label>Interest Rate</label>
+            <div class="slider-value" id="rateValue">14.0%</div>
+          </div>
+          <input type="range" class="custom-range" id="interestRate" min="10" max="26" step="0.5" value="14" />
+          <div class="slider-limits"><span>10%</span><span>26%</span></div>
+        </div>
+      </div>
+
+      <div class="breakdown-grid">
+        <div class="breakdown-card">
+          <div class="bc-label">Principal</div>
+          <div class="bc-value" id="bPrincipal">₹1,00,000</div>
+        </div>
+        <div class="breakdown-card">
+          <div class="bc-label">Total Interest</div>
+          <div class="bc-value accent" id="bInterest">₹7,688</div>
+        </div>
+        <div class="breakdown-card">
+          <div class="bc-label">Total Payable</div>
+          <div class="bc-value" id="bTotal">₹1,07,688</div>
+        </div>
+        <div class="breakdown-card">
+          <div class="bc-label">Processing Fee</div>
+          <div class="bc-value" id="bFee">₹1,000</div>
+        </div>
+      </div>
+
+      <div class="purpose-section">
+        <label class="field-label">Loan Purpose</label>
+        <div class="purpose-chips" id="purposeChips">
+          <div class="chip selected" onclick="selectPurpose(this)">Medical</div>
+          <div class="chip" onclick="selectPurpose(this)">Home Renovation</div>
+          <div class="chip" onclick="selectPurpose(this)">Education</div>
+          <div class="chip" onclick="selectPurpose(this)">Wedding</div>
+          <div class="chip" onclick="selectPurpose(this)">Travel</div>
+          <div class="chip" onclick="selectPurpose(this)">Debt Consolidation</div>
+          <div class="chip" onclick="selectPurpose(this)">Business</div>
+          <div class="chip" onclick="selectPurpose(this)">Other</div>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <div></div>
+        <button class="btn-primary" onclick="goTo(2)">Continue <span class="btn-arrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- ── STEP 2: Personal Details ── -->
+    <section class="step-panel" id="panel-2">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 2 of 7</div>
+        <h1 class="panel-title">Tell us about yourself</h1>
+        <p class="panel-subtitle">We need a few details to assess your application</p>
+      </div>
+
+      <div class="form-grid">
+        <div class="field-group">
+          <label class="field-label">Full Name (as per Aadhaar) <span class="req">*</span></label>
+          <input type="text" class="field-input" id="fullName" placeholder="e.g. Priya Subramaniam" />
+          <div class="field-error" id="err-fullName">Please enter your full name</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Date of Birth <span class="req">*</span></label>
+          <input type="date" class="field-input" id="dob" />
+          <div class="field-error" id="err-dob">Please select date of birth</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Mobile Number <span class="req">*</span></label>
+          <div class="input-prefix-wrap">
+            <span class="input-prefix">+91</span>
+            <input type="tel" class="field-input prefixed" id="mobile" placeholder="9876543210" maxlength="10" />
+          </div>
+          <div class="field-error" id="err-mobile">Enter valid 10-digit mobile number</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Email Address <span class="req">*</span></label>
+          <input type="email" class="field-input" id="email" placeholder="you@example.com" />
+          <div class="field-error" id="err-email">Enter a valid email address</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Gender <span class="req">*</span></label>
+          <select class="field-input" id="gender">
+            <option value="">Select gender</option>
+            <option>Male</option>
+            <option>Female</option>
+            <option>Transgender</option>
+            <option>Prefer not to say</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Marital Status</label>
+          <select class="field-input" id="marital">
+            <option value="">Select status</option>
+            <option>Single</option>
+            <option>Married</option>
+            <option>Divorced</option>
+            <option>Widowed</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Employment Type <span class="req">*</span></label>
+          <select class="field-input" id="employment">
+            <option value="">Select type</option>
+            <option>Salaried — Private Sector</option>
+            <option>Salaried — Government</option>
+            <option>Self-Employed Professional</option>
+            <option>Business Owner</option>
+            <option>Freelancer / Consultant</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Monthly Net Income (₹) <span class="req">*</span></label>
+          <input type="number" class="field-input" id="income" placeholder="e.g. 60000" />
+          <div class="field-error" id="err-income">Enter valid monthly income</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Current City <span class="req">*</span></label>
+          <input type="text" class="field-input" id="city" placeholder="e.g. Chennai" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">State <span class="req">*</span></label>
+          <select class="field-input" id="state">
+            <option value="">Select state</option>
+            <option>Andhra Pradesh</option><option>Assam</option><option>Bihar</option>
+            <option>Delhi</option><option>Gujarat</option><option>Haryana</option>
+            <option>Karnataka</option><option>Kerala</option><option>Madhya Pradesh</option>
+            <option>Maharashtra</option><option>Punjab</option><option>Rajasthan</option>
+            <option>Tamil Nadu</option><option>Telangana</option><option>Uttar Pradesh</option>
+            <option>West Bengal</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">PIN Code <span class="req">*</span></label>
+          <input type="text" class="field-input" id="pincode" placeholder="6-digit PIN" maxlength="6" />
+          <div class="field-error" id="err-pincode">Enter valid 6-digit PIN code</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Existing Monthly EMIs (₹)</label>
+          <input type="number" class="field-input" id="existingEmi" placeholder="0 if none" value="0" />
+        </div>
+
+        <div class="field-group full-width">
+          <label class="field-label">Current Address <span class="req">*</span></label>
+          <textarea class="field-input" id="address" rows="2" placeholder="Full residential address including flat/house no., street, area"></textarea>
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(1)">← Back</button>
+        <button class="btn-primary" onclick="validateStep2()">Continue <span class="btn-arrow">→</span></button>
+      </div>
+    </section>
+
+    <!-- ── STEP 3: PAN Verification ── -->
+    <section class="step-panel" id="panel-3">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 3 of 7 — KYC</div>
+        <h1 class="panel-title">PAN Card Verification</h1>
+        <p class="panel-subtitle">Your PAN links your financial identity. Provide details exactly as on card.</p>
+      </div>
+
+      <div class="kyc-info-strip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Data encrypted with AES-256. Verified against NSDL/UTI in production.
+      </div>
+
+      <div class="form-grid">
+        <div class="field-group">
+          <label class="field-label">PAN Number <span class="req">*</span></label>
+          <input type="text" class="field-input mono" id="panNumber" placeholder="ABCDE1234F" maxlength="10"
+            oninput="this.value=this.value.toUpperCase()" />
+          <div class="field-hint">Format: 5 letters + 4 digits + 1 letter</div>
+          <div class="field-error" id="err-pan">Enter valid 10-character PAN</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Name on PAN <span class="req">*</span></label>
+          <input type="text" class="field-input" id="panName" placeholder="Exactly as printed on card" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Date of Birth on PAN <span class="req">*</span></label>
+          <input type="date" class="field-input" id="panDob" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Father's Name (on PAN)</label>
+          <input type="text" class="field-input" id="fatherName" placeholder="Father's full name" />
+        </div>
+      </div>
+
+      <div class="upload-section">
+        <h3 class="upload-section-title">Upload PAN Card Images</h3>
+        <div class="upload-row">
+          <div class="upload-zone" id="uz-panFront" onclick="triggerUpload('panFrontFile')">
+            <input type="file" id="panFrontFile" accept="image/*,.pdf" hidden onchange="handleUpload(this,'panFront','uz-panFront','panFrontPreview')" />
+            <div class="uz-icon">📄</div>
+            <div class="uz-title">PAN Front <span class="req">*</span></div>
+            <div class="uz-hint">Photo & name side — JPG/PNG/PDF</div>
+            <img id="panFrontPreview" class="uz-preview" />
+          </div>
+          <div class="upload-zone" id="uz-panBack" onclick="triggerUpload('panBackFile')">
+            <input type="file" id="panBackFile" accept="image/*,.pdf" hidden onchange="handleUpload(this,'panBack','uz-panBack','panBackPreview')" />
+            <div class="uz-icon">📄</div>
+            <div class="uz-title">PAN Back <span style="font-size:11px;color:#999">(optional)</span></div>
+            <div class="uz-hint">Reverse side if available</div>
+            <img id="panBackPreview" class="uz-preview" />
+          </div>
+        </div>
+      </div>
+
+      <div class="verify-result-box" id="panResultBox" style="display:none">
+        <div class="vrb-header">
+          <span class="vrb-title">AI Verification — PAN</span>
+          <span class="verify-badge" id="panBadge">Pending</span>
+        </div>
+        <div class="vrb-body" id="panResult"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(2)">← Back</button>
+        <button class="btn-primary" id="panVerifyBtn" onclick="verifyPAN()">Verify & Continue →</button>
+      </div>
+    </section>
+
+    <!-- ── STEP 4: Aadhaar KYC ── -->
+    <section class="step-panel" id="panel-4">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 4 of 7 — KYC</div>
+        <h1 class="panel-title">Aadhaar Card Verification</h1>
+        <p class="panel-subtitle">Upload both sides of your Aadhaar for address and identity proof.</p>
+      </div>
+
+      <div class="kyc-info-strip uidai">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        Per UIDAI guidelines, only last 4 digits of Aadhaar are stored. Full number is never saved.
+      </div>
+
+      <div class="form-grid">
+        <div class="field-group">
+          <label class="field-label">Aadhaar Number <span class="req">*</span></label>
+          <input type="text" class="field-input mono" id="aadhaarNumber" placeholder="XXXX XXXX XXXX" maxlength="14"
+            oninput="fmtAadhaar(this)" />
+          <div class="field-error" id="err-aadhaar">Enter valid 12-digit Aadhaar</div>
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Name on Aadhaar <span class="req">*</span></label>
+          <input type="text" class="field-input" id="aadhaarName" placeholder="As printed on Aadhaar" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">DOB on Aadhaar <span class="req">*</span></label>
+          <input type="date" class="field-input" id="aadhaarDob" />
+        </div>
+
+        <div class="field-group">
+          <label class="field-label">Virtual ID (VID) — Optional</label>
+          <input type="text" class="field-input mono" id="vid" placeholder="16-digit VID" maxlength="19" />
+          <div class="field-hint">Use VID to avoid sharing actual Aadhaar number</div>
+        </div>
+
+        <div class="field-group full-width">
+          <label class="field-label">Address on Aadhaar <span class="req">*</span></label>
+          <textarea class="field-input" id="aadhaarAddress" rows="2" placeholder="Address as printed on Aadhaar card"></textarea>
+        </div>
+      </div>
+
+      <div class="upload-section">
+        <h3 class="upload-section-title">Upload Aadhaar Images</h3>
+        <div class="upload-row">
+          <div class="upload-zone" id="uz-aadhaarFront" onclick="triggerUpload('aadhaarFrontFile')">
+            <input type="file" id="aadhaarFrontFile" accept="image/*,.pdf" hidden onchange="handleUpload(this,'aadhaarFront','uz-aadhaarFront','aadhaarFrontPreview')" />
+            <div class="uz-icon">🪪</div>
+            <div class="uz-title">Aadhaar Front <span class="req">*</span></div>
+            <div class="uz-hint">Photo, name, DOB side</div>
+            <img id="aadhaarFrontPreview" class="uz-preview" />
+          </div>
+          <div class="upload-zone" id="uz-aadhaarBack" onclick="triggerUpload('aadhaarBackFile')">
+            <input type="file" id="aadhaarBackFile" accept="image/*,.pdf" hidden onchange="handleUpload(this,'aadhaarBack','uz-aadhaarBack','aadhaarBackPreview')" />
+            <div class="uz-icon">🪪</div>
+            <div class="uz-title">Aadhaar Back <span class="req">*</span></div>
+            <div class="uz-hint">Address & QR code side</div>
+            <img id="aadhaarBackPreview" class="uz-preview" />
+          </div>
+        </div>
+      </div>
+
+      <div class="verify-result-box" id="aadhaarResultBox" style="display:none">
+        <div class="vrb-header">
+          <span class="vrb-title">AI Verification — Aadhaar</span>
+          <span class="verify-badge" id="aadhaarBadge">Pending</span>
+        </div>
+        <div class="vrb-body" id="aadhaarResult"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(3)">← Back</button>
+        <button class="btn-primary" id="aadhaarVerifyBtn" onclick="verifyAadhaar()">Verify & Continue →</button>
+      </div>
+    </section>
+
+    <!-- ── STEP 5: Selfie / Face Match ── -->
+    <section class="step-panel" id="panel-5">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 5 of 7 — Liveness Check</div>
+        <h1 class="panel-title">Selfie & Face Verification</h1>
+        <p class="panel-subtitle">We'll match your live selfie with your PAN/Aadhaar photo to confirm your identity.</p>
+      </div>
+
+      <div class="selfie-area">
+        <div class="camera-frame" id="cameraFrame">
+          <video id="cameraStream" autoplay playsinline></video>
+          <canvas id="captureCanvas" style="display:none"></canvas>
+          <div class="face-guide">
+            <div class="face-oval"></div>
+            <div class="face-guide-text" id="faceGuideText">Position your face inside the oval</div>
+          </div>
+          <img id="capturedPhoto" class="captured-photo" style="display:none" />
+        </div>
+
+        <div class="selfie-controls">
+          <button class="btn-camera" id="startCamBtn" onclick="startCamera()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+            Start Camera
+          </button>
+          <button class="btn-camera capture hidden" id="captureBtn" onclick="captureSelfie()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+            Capture Photo
+          </button>
+          <button class="btn-camera retake hidden" id="retakeBtn" onclick="retakeSelfie()">
+            ↺ Retake
+          </button>
+        </div>
+
+        <div class="selfie-tips">
+          <div class="tip">✓ Face clearly visible — no glasses or mask</div>
+          <div class="tip">✓ Good lighting — avoid backlighting</div>
+          <div class="tip">✓ Look directly into the camera</div>
+          <div class="tip">✓ Neutral expression, face fits the oval</div>
+        </div>
+
+        <div class="upload-zone alt-upload" onclick="triggerUpload('selfieFile')" style="max-width:420px;margin:0 auto;">
+          <input type="file" id="selfieFile" accept="image/*" capture="user" hidden onchange="handleSelfieUpload(this)" />
+          <div class="uz-icon" style="font-size:20px;">📷</div>
+          <div class="uz-title" style="font-size:13px;">Or upload a recent photo</div>
+          <div class="uz-hint">Clear face photo — JPG or PNG</div>
+          <img id="selfieUploadPreview" class="uz-preview" />
+        </div>
+      </div>
+
+      <div class="verify-result-box" id="selfieResultBox" style="display:none">
+        <div class="vrb-header">
+          <span class="vrb-title">AI Face Match Result</span>
+          <span class="verify-badge" id="selfieBadge">Pending</span>
+        </div>
+        <div class="vrb-body" id="selfieResult"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(4)">← Back</button>
+        <button class="btn-primary" id="selfieVerifyBtn" onclick="verifySelfie()">Verify & Continue →</button>
+      </div>
+    </section>
+
+    <!-- ── STEP 6: Bank Statement ── -->
+    <section class="step-panel" id="panel-6">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 6 of 7</div>
+        <h1 class="panel-title">Bank Statement Upload</h1>
+        <p class="panel-subtitle">Upload 3–6 months of bank statements to verify income and transactions.</p>
+      </div>
+
+      <div class="kyc-info-strip">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Statements are analysed by AI. Raw files are never shared with third parties.
+      </div>
+
+      <div class="form-grid">
+        <div class="field-group">
+          <label class="field-label">Bank Name <span class="req">*</span></label>
+          <input type="text" class="field-input" id="bankName" placeholder="e.g. State Bank of India" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Account Number <span class="req">*</span></label>
+          <input type="text" class="field-input mono" id="bankAccount" placeholder="Account number" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">IFSC Code <span class="req">*</span></label>
+          <input type="text" class="field-input mono" id="ifsc" placeholder="e.g. SBIN0001234"
+            oninput="this.value=this.value.toUpperCase()" />
+        </div>
+        <div class="field-group">
+          <label class="field-label">Account Type</label>
+          <select class="field-input" id="accountType">
+            <option>Savings Account</option>
+            <option>Current Account</option>
+            <option>Salary Account</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="upload-section">
+        <h3 class="upload-section-title">Upload Bank Statements (Last 6 Months)</h3>
+        <div class="upload-zone wide" id="uz-statement" onclick="triggerUpload('statementFile')">
+          <input type="file" id="statementFile" accept=".pdf,.xlsx,.csv,image/*" multiple hidden
+            onchange="handleStatementUpload(this)" />
+          <div class="uz-icon">🏦</div>
+          <div class="uz-title">Drop files or click to upload</div>
+          <div class="uz-hint">PDF / Excel / CSV — Max 20MB — Multiple files allowed</div>
+          <div id="statementFileList" class="file-list"></div>
+        </div>
+      </div>
+
+      <div class="verify-result-box" id="statementResultBox" style="display:none">
+        <div class="vrb-header">
+          <span class="vrb-title">AI Bank Statement Analysis</span>
+          <span class="verify-badge" id="statementBadge">Pending</span>
+        </div>
+        <div class="vrb-body" id="statementResult"></div>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(5)">← Back</button>
+        <button class="btn-primary" id="statementVerifyBtn" onclick="verifyStatement()">Analyse & Continue →</button>
+      </div>
+    </section>
+
+    <!-- ── STEP 7: Review ── -->
+    <section class="step-panel" id="panel-7">
+      <div class="panel-header">
+        <div class="panel-eyebrow">Step 7 of 7 — Final Step</div>
+        <h1 class="panel-title">Review Your Application</h1>
+        <p class="panel-subtitle">Please verify all details before submitting your loan application.</p>
+      </div>
+
+      <div class="review-grid">
+        <div class="review-card">
+          <div class="rc-head">Loan Details</div>
+          <div class="rc-row"><span>Loan Amount</span><strong id="rv-amount">—</strong></div>
+          <div class="rc-row"><span>Tenure</span><strong id="rv-tenure">—</strong></div>
+          <div class="rc-row"><span>Interest Rate</span><strong id="rv-rate">—</strong></div>
+          <div class="rc-row"><span>Monthly EMI</span><strong id="rv-emi">—</strong></div>
+          <div class="rc-row"><span>Purpose</span><strong id="rv-purpose">—</strong></div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-head">Personal Info</div>
+          <div class="rc-row"><span>Name</span><strong id="rv-name">—</strong></div>
+          <div class="rc-row"><span>DOB</span><strong id="rv-dob">—</strong></div>
+          <div class="rc-row"><span>Mobile</span><strong id="rv-mobile">—</strong></div>
+          <div class="rc-row"><span>Email</span><strong id="rv-email">—</strong></div>
+          <div class="rc-row"><span>Employment</span><strong id="rv-employment">—</strong></div>
+          <div class="rc-row"><span>Monthly Income</span><strong id="rv-income">—</strong></div>
+          <div class="rc-row"><span>City / State</span><strong id="rv-location">—</strong></div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-head">KYC Status</div>
+          <div class="rc-row"><span>PAN (<span id="rv-pan">—</span>)</span><span class="status-pill" id="rv-panStatus">Pending</span></div>
+          <div class="rc-row"><span>Aadhaar (****<span id="rv-aadhaar">—</span>)</span><span class="status-pill" id="rv-aadhaarStatus">Pending</span></div>
+          <div class="rc-row"><span>Face Match</span><span class="status-pill" id="rv-faceStatus">Pending</span></div>
+          <div class="rc-row"><span>Bank Statement</span><span class="status-pill" id="rv-stmtStatus">Pending</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-head">Bank Details</div>
+          <div class="rc-row"><span>Bank</span><strong id="rv-bank">—</strong></div>
+          <div class="rc-row"><span>Account No.</span><strong id="rv-acc">—</strong></div>
+          <div class="rc-row"><span>IFSC</span><strong id="rv-ifsc">—</strong></div>
+          <div class="rc-row"><span>Account Type</span><strong id="rv-accType">—</strong></div>
+        </div>
+      </div>
+
+      <div class="eligibility-box" id="eligibilityBox">
+        <div class="elig-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          AI Eligibility Assessment
+        </div>
+        <div class="elig-body" id="eligibilityBody">Submit the application to receive your AI-powered eligibility report.</div>
+      </div>
+
+      <div class="consent-block">
+        <label class="consent-label">
+          <input type="checkbox" id="consentCheck" />
+          <span>I authorise SwiftLoan to verify my KYC documents, check my credit history via CIBIL/Experian, and process my loan application in accordance with RBI guidelines and SwiftLoan's Privacy Policy.</span>
+        </label>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(6)">← Back</button>
+        <button class="btn-primary" id="submitBtn" onclick="submitApplication()">
+          Submit Application
+          <span class="btn-arrow">✓</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── SUCCESS ── -->
+    <section class="step-panel" id="panel-success">
+      <div class="success-wrap">
+        <div class="success-ring">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h1 class="success-title">Application Submitted!</h1>
+        <p class="success-sub">Your personal loan application is under review. You'll receive updates via SMS and email.</p>
+        <div class="ref-card">
+          <div class="ref-label">Reference Number</div>
+          <div class="ref-code" id="refCode">SL-XXXXXXXX</div>
+        </div>
+        <div class="next-steps-box">
+          <div class="nsb-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            What happens next
+          </div>
+          <div class="nsb-body" id="nextSteps">Loading personalised next steps…</div>
+        </div>
+        <button class="btn-primary" style="margin-top:28px" onclick="location.reload()">Apply Again</button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
