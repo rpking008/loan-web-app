@@ -12,9 +12,9 @@ const rateLimit  = require('express-rate-limit');
 const path       = require('path');
 const fs         = require('fs');
 
-const kycRoutes  = require('./routes/kyc');
-const loanRoutes = require('./routes/loan');
-const authRoutes = require('./routes/auth');
+const kycRoutes  = require('./kyc');
+const loanRoutes = require('./loan');
+const authRoutes = require('./auth');
 
 const app  = express();
 const PORT = process.env.PORT || 4000;
