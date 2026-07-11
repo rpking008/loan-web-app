@@ -83,11 +83,10 @@ app.use('/api/kyc',     kycLimiter, kycRoutes);
 app.use('/api/loan',    loanRoutes);
 
 // ── Serve Frontend (optional static serve) ──────
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(__dirname));
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
-
 // ── Global Error Handler ────────────────────────
 app.use((err, req, res, next) => {
   console.error('[ERROR]', err.message);
