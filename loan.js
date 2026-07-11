@@ -3,7 +3,7 @@
 // ──────────────────────────────────────────────
 const express  = require('express');
 const { v4: uuidv4 } = require('uuid');
-const claudeAI = require('../utils/claudeAI');
+const claudeAI = require('./claudeAI');
 
 const router = express.Router();
 const asyncHandler = fn => (req, res, next) => Promise.resolve(fn(req, res, next)).catch(next);
