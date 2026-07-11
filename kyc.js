@@ -5,8 +5,8 @@ const express = require('express');
 const multer  = require('multer');
 const path    = require('path');
 const { v4: uuidv4 } = require('uuid');
-const claudeAI = require('../utils/claudeAI');
-const validators = require('../utils/validators');
+const claudeAI = require('./claudeAI');
+const validators = require('./validators');
 
 const router = express.Router();
 
