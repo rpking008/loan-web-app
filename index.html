@@ -464,15 +464,71 @@
       </div>
 
       <div class="selfie-area">
-        <div class="camera-frame" id="cameraFrame">
-          <video id="cameraStream" autoplay playsinline></video>
-          <canvas id="captureCanvas" style="display:none"></canvas>
-          <div class="face-guide">
-            <div class="face-oval"></div>
-            <div class="face-guide-text" id="faceGuideText">Position your face inside the oval</div>
-          </div>
-          <img id="capturedPhoto" class="captured-photo" style="display:none" />
+      <!-- Replace the entire success panel -->
+<section class="step-panel" id="panel-success">
+  <div class="success-wrap">
+    <div class="confetti-container" id="confettiContainer"></div>
+    
+    <div class="success-ring animate-pulse">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    
+    <h1 class="success-title">🎉 Application Submitted!</h1>
+    <p class="success-sub">Your personal loan application is under review. You'll receive updates via SMS and email.</p>
+    
+    <div class="ref-card animate-in">
+      <div class="ref-label">Reference Number</div>
+      <div class="ref-code" id="refCode">SL-XXXXXXXX</div>
+      <button class="copy-btn" onclick="copyRefCode()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="9" y="9" width="13" height="13" rx="2"/>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+        </svg>
+        Copy
+      </button>
+    </div>
+    
+    <div class="timeline-visual">
+      <div class="tl-item active">
+        <div class="tl-dot">✓</div>
+        <div class="tl-content">
+          <div class="tl-title">Application Submitted</div>
+          <div class="tl-time">Just now</div>
         </div>
+      </div>
+      <div class="tl-line"></div>
+      <div class="tl-item">
+        <div class="tl-dot">⏳</div>
+        <div class="tl-content">
+          <div class="tl-title">KYC & Credit Check</div>
+          <div class="tl-time">1-2 business days</div>
+        </div>
+      </div>
+      <div class="tl-line"></div>
+      <div class="tl-item">
+        <div class="tl-dot">📄</div>
+        <div class="tl-content">
+          <div class="tl-title">Sanction & Agreement</div>
+          <div class="tl-time">2-3 business days</div>
+        </div>
+      </div>
+      <div class="tl-line"></div>
+      <div class="tl-item">
+        <div class="tl-dot">💰</div>
+        <div class="tl-content">
+          <div class="tl-title">Funds Disbursed</div>
+          <div class="tl-time">3-5 business days</div>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn-primary" style="margin-top:28px; width:100%; max-width:320px;" onclick="location.reload()">
+      Apply Again
+    </button>
+  </div>
+</section>
 
         <div class="selfie-controls">
           <button class="btn-camera" id="startCamBtn" onclick="startCamera()">
