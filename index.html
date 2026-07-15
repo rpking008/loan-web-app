@@ -624,4 +624,124 @@
 
         <div class="review-card">
           <div class="rc-head">Personal Info</div>
-          <div class="rc-row"><span>Name
+          <div class="rc-row"><span>Name</span><strong id="rv-name">—</strong></div>
+          <div class="rc-row"><span>DOB</span><strong id="rv-dob">—</strong></div>
+          <div class="rc-row"><span>Mobile</span><strong id="rv-mobile">—</strong></div>
+          <div class="rc-row"><span>Email</span><strong id="rv-email">—</strong></div>
+          <div class="rc-row"><span>Employment</span><strong id="rv-employment">—</strong></div>
+          <div class="rc-row"><span>Monthly Income</span><strong id="rv-income">—</strong></div>
+          <div class="rc-row"><span>City / State</span><strong id="rv-location">—</strong></div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-head">KYC Status</div>
+          <div class="rc-row"><span>PAN (<span id="rv-pan">—</span>)</span><span class="status-pill" id="rv-panStatus">Pending</span></div>
+          <div class="rc-row"><span>Aadhaar (****<span id="rv-aadhaar">—</span>)</span><span class="status-pill" id="rv-aadhaarStatus">Pending</span></div>
+          <div class="rc-row"><span>Face Match</span><span class="status-pill" id="rv-faceStatus">Pending</span></div>
+          <div class="rc-row"><span>Bank Statement</span><span class="status-pill" id="rv-stmtStatus">Pending</span></div>
+        </div>
+
+        <div class="review-card">
+          <div class="rc-head">Bank Details</div>
+          <div class="rc-row"><span>Bank</span><strong id="rv-bank">—</strong></div>
+          <div class="rc-row"><span>Account No.</span><strong id="rv-acc">—</strong></div>
+          <div class="rc-row"><span>IFSC</span><strong id="rv-ifsc">—</strong></div>
+          <div class="rc-row"><span>Account Type</span><strong id="rv-accType">—</strong></div>
+        </div>
+      </div>
+
+      <div class="eligibility-box" id="eligibilityBox">
+        <div class="elig-header">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          AI Eligibility Assessment
+        </div>
+        <div class="elig-body" id="eligibilityBody">Submit the application to receive your AI-powered eligibility report.</div>
+      </div>
+
+      <div class="consent-block">
+        <label class="consent-label">
+          <input type="checkbox" id="consentCheck" />
+          <span>I authorise SwiftLoan to verify my KYC documents, check my credit history via CIBIL/Experian, and process my loan application in accordance with RBI guidelines and SwiftLoan's Privacy Policy.</span>
+        </label>
+      </div>
+
+      <div class="btn-row">
+        <button class="btn-ghost" onclick="goTo(6)">← Back</button>
+        <button class="btn-primary" id="submitBtn" onclick="submitApplication()">
+          Submit Application
+          <span class="btn-arrow">✓</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ── SUCCESS ── -->
+    <section class="step-panel" id="panel-success">
+      <div class="success-wrap">
+        <div class="confetti-container" id="confettiContainer"></div>
+        
+        <div class="success-ring animate-pulse">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+        
+        <h1 class="success-title">🎉 Application Submitted!</h1>
+        <p class="success-sub">Your personal loan application is under review. You'll receive updates via SMS and email.</p>
+        
+        <div class="ref-card animate-in">
+          <div class="ref-label">Reference Number</div>
+          <div class="ref-code" id="refCode">SL-XXXXXXXX</div>
+          <button class="copy-btn" onclick="copyRefCode()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            Copy
+          </button>
+        </div>
+        
+        <div class="timeline-visual">
+          <div class="tl-item active">
+            <div class="tl-dot">✓</div>
+            <div class="tl-content">
+              <div class="tl-title">Application Submitted</div>
+              <div class="tl-time">Just now</div>
+            </div>
+          </div>
+          <div class="tl-line"></div>
+          <div class="tl-item">
+            <div class="tl-dot">⏳</div>
+            <div class="tl-content">
+              <div class="tl-title">KYC & Credit Check</div>
+              <div class="tl-time">1-2 business days</div>
+            </div>
+          </div>
+          <div class="tl-line"></div>
+          <div class="tl-item">
+            <div class="tl-dot">📄</div>
+            <div class="tl-content">
+              <div class="tl-title">Sanction & Agreement</div>
+              <div class="tl-time">2-3 business days</div>
+            </div>
+          </div>
+          <div class="tl-line"></div>
+          <div class="tl-item">
+            <div class="tl-dot">💰</div>
+            <div class="tl-content">
+              <div class="tl-title">Funds Disbursed</div>
+              <div class="tl-time">3-5 business days</div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-primary" style="margin-top:28px; width:100%; max-width:320px;" onclick="location.reload()">
+          Apply Again
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
