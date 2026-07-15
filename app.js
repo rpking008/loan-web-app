@@ -627,3 +627,200 @@ document.addEventListener('DOMContentLoaded', () => {
   calcEMI();
   updateSidebarSteps(1);
 });
+// =============================================
+// UI/UX IMPROVEMENTS — Add to app.js
+// =============================================
+
+// --- 1. SLIDER FILL UPDATE ---
+function updateSliderFill(slider) {
+  const min = parseFloat(slider.min);
+  const max = parseFloat(slider.max);
+  const val = parseFloat(slider.value);
+  const pct = ((val - min) / (max - min)) * 100;
+  slider.style.setProperty('--fill', pct + '%');
+}
+
+// Initialize sliders with fill
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.custom-range').forEach(slider => {
+    slider.addEventListener('input', function() {
+      updateSliderFill(this);
+    });
+    updateSliderFill(slider);
+  });
+});
+
+// --- 2. CLICKABLE STEP NAVIGATION ---
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.step-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const step = parseInt(item.dataset.step);
+      if (step < state.currentStep) {
+        goTo(step);
+      }
+    });
+  });
+});
+
+// --- 3. REAL-TIME FIELD VALIDATION ---
+function validateField(input) {
+  const id = input.id;
+  const validators = {
+    mobile: v => /^[6-9]\d{9}$/.test(v),
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),
+    pincode: v => /^\d{6}$/.test(v),
+    income: v => parseFloat(v) > 0,
+    panNumber: v => /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(v),
+    aadhaarNumber: v => /^\d{12}$/.test(v.replace(/\s/g, '')),
+  };
+
+  input.addEventListener('blur', function() {
+    const val = this.value.trim();
+    const validator = validators[id];
+    if (validator && val) {
+      if (validator(val)) {
+        this.classList.remove('invalid');
+        this.classList.add('valid');
+        clearError(id);
+      } else {
+        this.classList.remove('valid');
+        this.classList.add('invalid');
+        showError(id, 'Invalid format');
+      }
+    }
+  });
+
+  input.addEventListener('focus', function() {
+    this.classList.remove('valid', 'invalid');
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.field-input').forEach(validateField);
+});
+
+// --- 4. LOADING OVERLAY ---
+function showLoading(message = 'Processing…') {
+  const overlay = document.createElement('div');
+  overlay.className = 'loading-overlay';
+  overlay.innerHTML = `
+    <div class="loading-content">
+      <div class="progress-ring"></div>
+      <p>${message}</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  return overlay;
+}
+
+function hideLoading(overlay) {
+  overlay.classList.add('fade-out');
+  setTimeout(() => overlay.remove(), 300);
+}
+
+// --- 5. SWIPE TO CLOSE SIDEBAR ---
+let touchStartX = 0;
+document.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+});
+
+document.addEventListener('touchmove', (e) => {
+  const touchEndX = e.touches[0].clientX;
+  const diff = touchStartX - touchEndX;
+  const sidebar = document.getElementById('sidebar');
+  if (diff > 50 && sidebar.classList.contains('open')) {
+    sidebar.classList.remove('open');
+  }
+});
+
+// --- 6. ENHANCED TOGGLE SIDEBAR WITH OVERLAY ---
+function toggleSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  let overlay = document.getElementById('sidebarOverlay');
+  
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.id = 'sidebarOverlay';
+    overlay.className = 'sidebar-overlay';
+    overlay.addEventListener('click', toggleSidebar);
+    document.body.appendChild(overlay);
+  }
+  
+  sidebar.classList.toggle('open');
+  overlay.classList.toggle('open');
+}
+
+// --- 7. CONFETTI EFFECT FOR SUCCESS ---
+function createConfetti() {
+  const container = document.getElementById('confettiContainer');
+  if (!container) return;
+  
+  const colors = ['#c9963e', '#0d7a6e', '#f5e9d4', '#2563eb', '#facc15'];
+  for (let i = 0; i < 50; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti';
+    el.style.left = Math.random() * 100 + '%';
+    el.style.background = colors[Math.floor(Math.random() * colors.length)];
+    el.style.animationDuration = (2 + Math.random() * 2) + 's';
+    el.style.animationDelay = (Math.random() * 3) + 's';
+    el.style.width = (4 + Math.random() * 8) + 'px';
+    el.style.height = (4 + Math.random() * 8) + 'px';
+    container.appendChild(el);
+  }
+}
+
+// --- 8. COPY REFERENCE CODE ---
+function copyRefCode() {
+  const code = document.getElementById('refCode').textContent;
+  navigator.clipboard.writeText(code);
+  const btn = document.querySelector('.copy-btn');
+  btn.innerHTML = '✓ Copied!';
+  setTimeout(() => {
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg> Copy`;
+  }, 2000);
+}
+
+// --- 9. OBSERVER FOR SUCCESS PAGE CONFETTI ---
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new MutationObserver(() => {
+    const successPanel = document.getElementById('panel-success');
+    if (successPanel && successPanel.classList.contains('active')) {
+      setTimeout(createConfetti, 500);
+      observer.disconnect();
+    }
+  });
+  
+  const successPanel = document.getElementById('panel-success');
+  if (successPanel) {
+    observer.observe(successPanel, { attributes: true, attributeFilter: ['class'] });
+  }
+});
+
+// --- 10. ENHANCED VERIFY FUNCTIONS WITH LOADING ---
+// Wrap your existing verify functions with loading overlay
+// Example for verifyPAN - replace your existing function with this:
+
+async function verifyPAN() {
+  const pan = document.getElementById('panNumber').value.toUpperCase().trim();
+  if (!/^[A-Z]{5}[0-9]{4}[A-Z]$/.test(pan)) {
+    document.getElementById('err-pan').classList.add('show'); 
+    return;
+  }
+  clearError('pan');
+  
+  // Show loading
+  const loading = showLoading('Verifying PAN with NSDL/UTI…');
+  
+  const name = document.getElementById('panName').value;
+  const appName = document.getElementById('fullName').value;
+
+  document.getElementById('panResultBox').style.display = 'block';
+  setBadge('panBadge', 'checking');
+  setVerifyBtn('panVerifyBtn', true);
+  document.getElementById('panResult').textContent = 'Running AI verification…';
+
+  // ... rest of your verification logic ...
+  
+  // Hide loading when done
+  setTimeout(() => hideLoading(loading), 800);
+}
